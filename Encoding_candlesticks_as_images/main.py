@@ -8,7 +8,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten, Conv2D, Activation
 
 # customized utilities
-from utils import util_processor as pro
+from utils import util_process as pro
 
 
 def get_model(params):
@@ -39,7 +39,7 @@ def train_model(params, data):
     hist = model.fit(x=data['train_gaf'], y=data['train_label_arr'],
                      validation_data=(data['val_gaf'], data['val_label_arr']),
                      batch_size=params['batch_size'], epochs=params['epochs'], verbose=2)
-    
+
     return (model, hist)
 
 
@@ -74,6 +74,6 @@ if __name__ == "__main__":
     # train cnn model
     model, hist = train_model(PARAMS, data)
     model.save(PARAMS['model_name'])
-    
+
     # train & test result
     print_result(data, model)
